@@ -1,10 +1,11 @@
-/// <reference path="Teacher.ts" />
+/// <reference path = "Teacher.ts" />
 
 namespace Subjects {
 	export class Subject{
-		teacher: Teacher;
+		teacher!: Subjects.Teacher;
 		setTeacher(teacher: Teacher): void {
 			this.teacher = teacher;
+		
 		}
 	}
 }

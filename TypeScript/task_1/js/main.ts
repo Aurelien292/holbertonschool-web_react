@@ -1,4 +1,4 @@
-interface Teacher{
+export interface Teacher{
 
 	readonly firstName: string;
 	readonly lastName: string;
@@ -8,15 +8,34 @@ interface Teacher{
 	[key: string]: any;
 }
 
-interface Directors extends Teacher {
+export interface Directors extends Teacher {
 	numberOfReports: number;
 }
 
-function printTeacher(firstName: string, lastName: string): string {
+export function printTeacher(firstName: string, lastName: string): string {
   return `${firstName[0]}. ${lastName}`;
 }
 console.log(printTeacher("John", "Doe"));
 
-interface printTeacherFunction {
+export interface printTeacherFunction {
   (firstName: string, lastName: string): string;
+}
+
+export interface StudentConstructor {
+	new (firstName: string, lastName: string): StudentInterface;
+}
+
+export interface StudentInterface {
+	workOnHomework(): string;
+	displayName(): string;
+}
+
+export class StudentClass implements StudentInterface {
+	constructor(public firstName: string, public lastName: string) {}
+	workOnHomework(): string {
+		return 'Currently working';
+	}
+	displayName(): string {
+		return this.firstName;
+	}
 }

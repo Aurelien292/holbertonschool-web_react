@@ -1,14 +1,14 @@
-interface DirectorInterface {
+export interface DirectorInterface {
 	workFromHome(): string;
 	getCoffeeBreak(): string;
 	workDirectorTasks(): string;
 }
-interface TeacherInterface {
+export interface TeacherInterface {
 	workFromHome(): string;
 	getCoffeeBreak(): string;
 	workTeacherTasks(): string;
 }
-class Director implements DirectorInterface {
+export class Director implements DirectorInterface {
 	workFromHome(): string {
 		return 'Working from home';
 	}
@@ -21,7 +21,7 @@ class Director implements DirectorInterface {
 		return 'Getting to director tasks';
 	}
 }
-class Teacher implements TeacherInterface {
+export class Teacher implements TeacherInterface {
 	workFromHome(): string {
 		return 'Cannot work from home';
 	}
@@ -35,7 +35,7 @@ class Teacher implements TeacherInterface {
 	}
 }
 
-let createEmployee = (salary: number | string): Director | Teacher => {
+export const createEmployee = (salary: number | string): Director | Teacher => {
 	if (typeof salary === 'number' && salary < 500) {
 		return new Teacher();
 	} else {
@@ -43,11 +43,11 @@ let createEmployee = (salary: number | string): Director | Teacher => {
 	}
 }
 
-const isDirector = (employee: Director | Teacher): employee is Director => {
+export const isDirector = (employee: Director | Teacher): employee is Director => {
 	return typeof (employee as Director).workDirectorTasks === 'function';
 }
 
-const executeWork = (employee: Director | Teacher): string => {
+export const executeWork = (employee: Director | Teacher): string => {
 	if (isDirector(employee)) {
 		return employee.workDirectorTasks();
 	} else {
@@ -58,8 +58,8 @@ const executeWork = (employee: Director | Teacher): string => {
 console.log(executeWork (createEmployee(200)));
 console.log(executeWork (createEmployee (1000)));
 
-type Subjects = 'Math' | 'History';
-const teachClass = (todayClass: Subjects): string => {
+export type Subjects = 'Math' | 'History';
+export const teachClass = (todayClass: Subjects): string => {
 	if (todayClass === 'Math') {
 		return 'Teaching Math';
 	} else if (todayClass === 'History') {
